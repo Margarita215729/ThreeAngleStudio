@@ -1,28 +1,33 @@
 <template>
-  <div class="portfolio">
-    <section class="gallery">
-      <h1>Our Portfolio</h1>
-      <div class="gallery-grid">
-        <div v-for="item in portfolioItems" :key="item.id" class="gallery-item">
-          <img :src="item.imageUrl" :alt="item.title" />
-          <h2>{{ item.title }}</h2>
-        </div>
+  <section class="gallery fade-in">
+    <h1>Our Gallery</h1>
+    <div class="gallery-grid">
+      <div v-for="item in placeholderImages" :key="item.id" class="gallery-item">
+        <img :src="item.src" :alt="'Placeholder ' + item.id" @mouseenter="animateImage" />
+        <p>Placeholder {{ item.id }}</p>
       </div>
-    </section>
-  </div>
+    </div>
+  </section>
 </template>
 
 <script>
+import { gsap } from "gsap";
+
 export default {
-  name: "Portfolio",
+  name: "Gallery",
   data() {
     return {
-      portfolioItems: [
-        { id: 1, title: "Wedding Photoshoot", imageUrl: "/images/wedding.jpg" },
-        { id: 2, title: "Fashion Shoot", imageUrl: "/images/fashion.jpg" },
-        { id: 3, title: "Event Photography", imageUrl: "/images/event.jpg" },
-      ],
+      placeholderImages: Array.from({ length: 6 }, (_, i) => ({
+        id: i + 1,
+        src: `https://placehold.co/300x300?text=${i + 1}`,
+      })),
     };
+  },
+  methods: {
+    animateImage(event) {
+      gsap.to(event.target, { duration: 0.3, scale: 1.1 });
+      gsap.to(event.target, { duration: 0.3, scale: 1, delay: 0.3 });
+    },
   },
 };
 </script>
@@ -30,8 +35,7 @@ export default {
 <style>
 .gallery {
   text-align: center;
-  background-color: #fffaf1;
-  padding: 3rem 1rem;
+  padding: 2rem 1rem;
 }
 
 .gallery h1 {
@@ -47,12 +51,12 @@ export default {
 
 .gallery-item img {
   width: 100%;
-  height: auto;
   border-radius: 10px;
+  transition: transform 0.3s ease;
 }
 
-.gallery-item h2 {
-  font-size: 1.2rem;
+.gallery-item p {
+  font-size: 1rem;
   margin-top: 0.5rem;
 }
 </style>
