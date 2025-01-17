@@ -2,9 +2,9 @@
   <header>
     <nav>
       <ul>
-        <li><a href="#home">Home</a></li>
-        <li><a href="#portfolio">Portfolio</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><router-link to="/">Home</router-link></li>
+        <li><router-link to="/portfolio">Portfolio</router-link></li>
+        <li><router-link to="/contact">Contact</router-link></li>
       </ul>
     </nav>
   </header>
