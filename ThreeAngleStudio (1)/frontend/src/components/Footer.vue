@@ -1,0 +1,1 @@
+<template><footer>Footer Component</footer></template>

@@ -1,0 +1,1 @@
+<template><div>App Template</div></template>
